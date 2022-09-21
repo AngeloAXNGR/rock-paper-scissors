@@ -44,7 +44,7 @@ function game(){
   for(let i = 0; i < rounds; i++){
     let playerInput = prompt('Select Your Weapon: ');
     let computerInput = getComputerChoice(choices);
-    playRound(playerInput, computerInput);
+    playRound(playerInput.toLowerCase(), computerInput);
     console.log(`Player: ${playerScore} || Computer ${computerScore}`);
 
     // Whoever reaches 5 first will win and if it does, the round ends, otherwise (else) the game will continue.
@@ -62,6 +62,3 @@ function game(){
 }
 
 game();
-
-console.log('Player Score: ' + playerScore);
-console.log('Computer Score: ' + computerScore);
