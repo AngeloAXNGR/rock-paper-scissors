@@ -6,19 +6,18 @@ function getComputerChoice(choices){
   return computerChoice;
 }
 
-// let playerInput = prompt('Select your weapon!');
-// let computerInput = getComputerChoice(choices);
-
-// console.log("Player: " + playerInput);
-// console.log("Computer: " + computerInput);
-
-let playerScore = 0;
-let computerScore = 0;
-
-let rounds = 5;
 
 
-function playGame(playerSelection, computerSelection){
+let scores = [0,0]
+let playerScore = scores[0]
+let computerScore = scores[1]
+
+// Best of 9 or First to Five
+let rounds = 9;
+
+
+function playRound(playerSelection, computerSelection){
+
   if(playerSelection == "rock" && computerSelection == "scissors"){
     return playerScore++;
     
@@ -36,32 +35,33 @@ function playGame(playerSelection, computerSelection){
 
   }else if(playerSelection == "scissors" && computerSelection == "rock"){
     return computerScore++
-
   }else{
     rounds++;
   }
 }
 
 function game(){
-  for(let i = 1; i <= rounds; i++){
-    let playerInput = prompt('Select your weapon!');
+  for(let i = 0; i < rounds; i++){
+    let playerInput = prompt('Select Your Weapon: ');
     let computerInput = getComputerChoice(choices);
-    playGame(playerInput, computerInput);
-    console.log("Player: " + playerInput);
-    console.log("Computer: " + computerInput);
+    playRound(playerInput, computerInput);
+    console.log(`Player: ${playerScore} || Computer ${computerScore}`);
+
+    // Whoever reaches 5 first will win and if it does, the round ends, otherwise (else) the game will continue.
+    if(playerScore == 5){
+      console.log("Player Wins!");
+      break;
+    }else if(computerScore == 5){
+      console.log("Computer Wins...")
+      break;
+    }else{
+      continue;
+    }
   }
 
-  if(playerScore > computerScore){
-    console.log("Player Wins!");
-  }else{
-    console.log("Computer Wins!");
-  }
 }
-// playGame(playerInput, computerInput);
 
 game();
 
 console.log('Player Score: ' + playerScore);
 console.log('Computer Score: ' + computerScore);
-// let test = getComputerChoice(choices);
-// console.log(test);
