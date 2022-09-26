@@ -1,19 +1,17 @@
 const choices = ['rock', 'paper', 'scissors'];
+let playerScore = 0;
+let computerScore = 0;
+let round = 0;
+
+let roundResult = document.querySelector('#round-result');
+roundResult.textContent = '';
+roundResult.style.textAlign = 'Center';
 
 function getComputerChoice(choices){
   let index = Math.floor(Math.random(0) * choices.length);
   let computerChoice = choices[index];
   return computerChoice;
 }
-
-
-
-
-let playerScore = 0;
-let computerScore = 0;
-let round = 0;
-
-
 
 // Get three buttons
 const btns = document.querySelectorAll('button');
@@ -24,33 +22,63 @@ btns.forEach((btn) =>{
   btn.addEventListener('click', () =>{
     playerInput = btn.textContent.toLowerCase();
     computerInput = getComputerChoice(choices);
+
     playRound(playerInput, computerInput);
     getScore(playerScore, computerScore);
+
     computerTally.textContent = computerScore;
     playerTally.textContent = playerScore;
   });
 });
 
+function resetGame(){
+  // enableButtons();
+  const resetBtn = document.createElement('button');
+  resetBtn.setAttribute('id', 'reset-button');
+  resetBtn.style.textAlign = "Center";
+  resetBtn.textContent = "Replay";
+  resetBtn.addEventListener('click', () =>{
+    resetBtn.remove();
+    playerScore = 0;
+    computerScore = 0;
+    round = 0;
+    computerTally.textContent = 0;
+    playerTally.textContent = 0;
+    roundResult.textContent = '';
+    roundResult.style.color = 'black';
+    enableButtons();
+  });
+  document.body.appendChild(resetBtn);
+}
 
+function disableButtons(){
+  btns.forEach((btn) =>{
+    btn.disabled = true;
+  });
+}
 
-
+function enableButtons(){
+  btns.forEach((btn) =>{
+    btn.disabled = false;
+  });
+}
 
 function getScore(playerScore, computerScore){
   if(playerScore == 5){
     roundResult.textContent = 'Winner: Player'
     roundResult.style.color = "green";
+    disableButtons();
+    resetGame();
   }else if(computerScore == 5){
     roundResult.textContent = 'Winner: Computer'
     roundResult.style.color = "red";
+    disableButtons();
+    resetGame();
   }  
 }
 
 
 
-
-let roundResult = document.querySelector('#round-result');
-roundResult.textContent = '';
-roundResult.style.textAlign = 'Center';
 
 function playRound(playerSelection, computerSelection){
   round++;
