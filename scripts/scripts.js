@@ -11,7 +11,7 @@ function getComputerChoice(choices){
 
 let playerScore = 0;
 let computerScore = 0;
-let round = 1;
+let round = 0;
 
 
 
@@ -53,10 +53,9 @@ roundResult.textContent = '';
 roundResult.style.textAlign = 'Center';
 
 function playRound(playerSelection, computerSelection){
+  round++;
   if(playerSelection == "rock" && computerSelection == "scissors"){
     roundResult.textContent = `Round ${round} Result: Win! Rock Beats Scissors!`;
-    round++
-    
     return playerScore++;
 
   }else if(playerSelection == "rock" && computerSelection == "paper"){
