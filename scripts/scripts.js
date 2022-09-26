@@ -14,13 +14,13 @@ function getComputerChoice(choices){
 }
 
 // Get three buttons
-const btns = document.querySelectorAll('button');
+const btns = document.querySelectorAll('input');
 let playerTally = document.querySelector('.player-score');
 let computerTally = document.querySelector('.computer-score');
 
 btns.forEach((btn) =>{
   btn.addEventListener('click', () =>{
-    playerInput = btn.textContent.toLowerCase();
+    playerInput = btn.value.toLowerCase();
     computerInput = getComputerChoice(choices);
 
     playRound(playerInput, computerInput);
@@ -32,10 +32,8 @@ btns.forEach((btn) =>{
 });
 
 function resetGame(){
-  // enableButtons();
   const resetBtn = document.createElement('button');
   resetBtn.setAttribute('id', 'reset-button');
-  resetBtn.style.textAlign = "Center";
   resetBtn.textContent = "Replay";
   resetBtn.addEventListener('click', () =>{
     resetBtn.remove();
@@ -76,8 +74,6 @@ function getScore(playerScore, computerScore){
     resetGame();
   }  
 }
-
-
 
 
 function playRound(playerSelection, computerSelection){
