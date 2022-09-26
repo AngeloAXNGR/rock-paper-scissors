@@ -11,9 +11,8 @@ function getComputerChoice(choices){
 
 let playerScore = 0;
 let computerScore = 0;
+let round = 1;
 
-// Best of 9 or First to Five
-// let rounds = 9;
 
 
 // Get three buttons
@@ -34,19 +33,15 @@ btns.forEach((btn) =>{
 
 
 
-const finalResult = document.createElement('h1');
-finalResult.setAttribute('style', 'text-align:center;')
 
 
 function getScore(playerScore, computerScore){
   if(playerScore == 5){
-    finalResult.textContent = `You Win!`;
-    roundResult.textContent = ''
-    document.body.appendChild(finalResult);
+    roundResult.textContent = 'Winner: Player'
+    roundResult.style.color = "green";
   }else if(computerScore == 5){
-    finalResult.textContent = `You Lost!`;
-    roundResult.textContent = ''
-    document.body.appendChild(finalResult);
+    roundResult.textContent = 'Winner: Computer'
+    roundResult.style.color = "red";
   }  
 }
 
@@ -59,31 +54,32 @@ roundResult.style.textAlign = 'Center';
 
 function playRound(playerSelection, computerSelection){
   if(playerSelection == "rock" && computerSelection == "scissors"){
-    roundResult.textContent = 'You Win! Rock Beats Scissors!';
+    roundResult.textContent = `Round ${round} Result: Win! Rock Beats Scissors!`;
+    round++
     
     return playerScore++;
 
   }else if(playerSelection == "rock" && computerSelection == "paper"){
-    roundResult.textContent = 'You Lose! Paper Beats Rock!';
+    roundResult.textContent = `Round ${round} Result: Lose! Paper Beats Rock!`;
     return computerScore++
 
   }else if(playerSelection == "paper" && computerSelection == "rock"){
-    roundResult.textContent = 'You Win! Paper Beats Rock!';
+    roundResult.textContent = `Round ${round} Result: Win! Paper Beats Rock!`;
     return playerScore++;
 
   }else if(playerSelection == "paper" && computerSelection == "scissors"){
-    roundResult.textContent = 'You Lose! Scissors Beats Paper!';
+    roundResult.textContent = `Round ${round} Result: Lose! Scissors Beats Paper!`;
     return computerScore++;
 
   }else if(playerSelection == "scissors" && computerSelection == "paper"){
-    roundResult.textContent = 'You Win! Scissors Beats PAper!';
+    roundResult.textContent = `Round ${round} Result: Win! Scissors Beats Paper!'`;
     return playerScore++;
 
   }else if(playerSelection == "scissors" && computerSelection == "rock"){
-    roundResult.textContent = 'You Lose! Rock Beats Scissors!';
+    roundResult.textContent = `Round ${round} Result: Lose! Rock Beats Scissors!`;
     return computerScore++
   }else{
-    roundResult.textContent = "It's a Tie!";
+    roundResult.textContent = `Round ${round} Result: Tie!`;
   }
 }
 
